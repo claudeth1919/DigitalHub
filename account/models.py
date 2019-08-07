@@ -8,8 +8,8 @@ class Account(models.Model):
         return self.name
 
 class Transaction(models.Model):
-    fromAccount = models.IntegerField()
-    toAccount = models.IntegerField()
+    fromAccount = models.ForeignKey(Account)
+    toAccount = models.ForeignKey(Account, on_delete=models.CASCADE)
     amount = models.DecimalField(decimal_places=3,max_digits=11)
     sentAt = models.DateTimeField(auto_now_add=True)
 
@@ -19,7 +19,7 @@ class Transaction(models.Model):
 class Balance(models.Model):
     amount = models.DecimalField(decimal_places=3,max_digits=11)
     balance = models.DecimalField(decimal_places=3,max_digits=11)
-    owner = models.IntegerField()
+    owner = models.ForeignKey(Account, on_delete=models.CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
