@@ -6,12 +6,12 @@ class AccountSerializer(serializers.ModelSerializer):
         model = Account
         fields = ('id','name','amount')
 
-class BalanceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Balance
-        fields = ('fromAccount','toAccount','amount','sentAt')
-
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
+        fields = ('fromAccount','toAccount','amount','sentAt')
+
+class BalanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Balance
         fields = ('amount','balance','owner', 'createdAt')
